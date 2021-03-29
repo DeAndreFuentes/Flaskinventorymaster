@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %} One Product {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{url_for('static', filename='../static/styles/one_product.css')}}">
+<div class="background">
+    <div class="container">
+        <h1 class="mb-3">{{ one_product[0][1] }}</h1>
+        <hr>
+        <div class="row">
+            <div class="col-5 border border-primary rounded p-3">
+                <div class="description-background">
+                <h4>Id: {{ one_product[0][0] }}</h4>
+                <h4>Price: {{ "$%.2f"|format(one_product[0][2]) }}</h4>
+                <h4 class="mb-5">Qty: {{ one_product[0][3] }}</h4>
+                </div>
+                <div class="description-background">
+                <p>{{ one_product[0][4] }}</p>
+                </div>
+                <button id="btn-edit" class="mt-5 mr-1 btn btn-warning" onclick="editProduct('{{one_product[0][0]}}')">Edit</button>
+
+                {% if one_product[0][6] == 1 or one_product[0][6] == "True" %}
+                <button class="mt-5 btn btn-danger" onclick="deactivate('{{one_product[0][0]}}')">Deactivate</button>
+                {% endif %}
+                {% if one_product[0][6] == 0 or one_product[0][6] == "False" %}
+                <button class="mt-5 btn btn-success" onclick="activate('{{one_product[0][0]}}')">Activate</button>
+                {% endif %}
+            </div>
+
+            <div class="col-7">
+                <h3>Add Review</h3>
+                <form class="" action="/review/{{one_product[0][0]}}/add" method="post">
+        
+                    <div class="form-group">
+                        <label for="">Name</label>
+                        <input type="text" required="required" class="form-control" name="form-name">
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="">Review</label>
+                        <textarea class="form-control" required="required" rows="3" name="form-review"></textarea>
+                    </div>
+        
+                    <button type="submit" class="btn btn-primary">Add Review</button>
+        
+                </form>
+            </div>
+        </div>
+
+        <hr>
+        <h2 class="mb-3">Reviews</h2>
+        <hr>
+
+        {% for review in reviews %}
+        <div class="review-box">
+        <div class="pl-5">
+            <h3>{{review[1]}}</h3>
+            <p>{{review[2]}}</p>
+            <hr>
+        </div>
+        </div>
+        {% endfor %}
+        {{ pagination.info }}
+        {{ pagination.links }}
+    </div>
+</div>
+    {{ super() }}
+{% endblock content %}

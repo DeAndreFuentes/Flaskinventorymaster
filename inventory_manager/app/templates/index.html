@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %} Inventory Manager {% endblock %}
+
+{% block content %}
+<head>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}">
+</head>
+<div class="background">
+    <div class="container">
+        <h1>Add Product</h1>
+        <hr>
+
+        <div>
+            <form action="/product/add" method="post">
+
+                <div class="row">
+                    <div class="form-group col-3">
+                        <label for="name">Name</label>
+                        <input class="form-control" type="text" name="form-name" required="required" id="">
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="price">Price</label>
+                        <input class="form-control" type="number" step="0.01" min=0 required="required" name="form-price" id="">
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="quantity">Quantity</label>
+                        <input class="form-control" type="number" min=0 required="required" name="form-quantity" id="">
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="category">Category</label>
+                        <input class="form-control" type="text" required="required" name="form-category" id="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" name="form-description" required="required" id="" rows="5"></textarea>
+                </div>
+
+                <button id="suc" type="submit" class="btn btn-info">Add Product</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    {{ super() }}
+{% endblock %}

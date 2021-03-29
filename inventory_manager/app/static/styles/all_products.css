@@ -1,0 +1,19 @@
+#table-id td
+{
+    text-align: center;
+    vertical-align: middle;
+}
+
+#table-id th
+{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.background {
+    background-image: url("https://media.istockphoto.com/photos/blurred-warehouse-inventory-product-stock-background-picture-id1083670196?k=6&m=1083670196&s=170667a&w=0&h=D5uNngR-aH0KACAPhkFSq12i9vpuTHXQfs661BAWqpE=");
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}

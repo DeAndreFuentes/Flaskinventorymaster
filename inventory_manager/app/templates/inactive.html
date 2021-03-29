@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %} Inactive Products {% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{url_for('static', filename='../static/styles/all_products.css')}}">
+<div class="background">
+    <div class="container">
+        <h1 class="mb-3">Inactive Products</h1>
+        <form class="search" method="get" action="">
+        <div class="row">
+             <div class="form-group col-4">
+             <input class="form-control" placeholder="Search Table by name" type="text" name="q" required="required" id="" value="{{search}}">
+             </div>
+
+             <div class="form-group col-3">
+             <button type="submit" class="btn btn-primary">Search</button>
+             </div>
+        </div>
+        </form>
+        <div class="row">
+        <div class="form-group col-3">
+        <a href="/products/inactive?q=">
+            <button class="btn btn-outline-info">Get All Data</button>
+        </a>
+        </div>
+        </div>
+        <div>
+            <table id="table-id" class="table table-borderless mb-0 table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for prod in products %}
+                    {% if prod[6] == "False" or prod[6] == 0 %}
+
+                    {% if prod[3] <= 100 %}
+                        <tr class="table-danger">
+                    {% endif %}
+
+                    {% if prod[3] in range(101, 500 + 1, 1) %}
+                        <tr class="table-warning">
+                    {% endif %}
+
+                    {% if prod[3] > 500 %}
+                        <tr class="table-success">
+                    {% endif %}
+
+                            <th scope="row"><a href="/product/{{prod[0]}}">{{prod[0]}}</a></td>
+                            <td>{{prod[1]}}</td>
+                            <td>{{"$%.2f"|format(prod[2])}}</td>
+                            <td>{{prod[3]}}</td>
+                            <td>
+                                <a href="/product/{{prod[0]}}?q={{search}}"><button class="btn btn-secondary">Details</button></a> &nbsp  &nbsp
+                                <a href="/product/{{prod[0]}}/activate?q={{search}}"><button class="btn btn-success">Activate</button></a> &nbsp  &nbsp
+                                <a href="/product/{{prod[0]}}?q={{search}}"><button class="btn btn-info">+ Review</button></a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        {{ pagination.info }}
+        {{ pagination.links }}
+        </div>
+        <hr>
+    </div>
+</div>
+    {{super()}}
+{% endblock %}

@@ -1,0 +1,19 @@
+SQLite format 3
+CREATE TABLE review (
+	"id"	INTEGER NOT NULL,
+	"name"	TEXT NOT NULL,
+	"review"	TEXT NOT NULL,
+	"product_id"	INTEGER,
+	PRIMARY KEY("id" AUTOINCREMENT),
+	FOREIGN KEY("product_id") REFERENCES "product"("id")
+);
+CREATE TABLE product (
+	"id"	INTEGER NOT NULL,
+	"name"	VARCHAR(45) NOT NULL,
+	"price"	FLOAT NOT NULL,
+	"quantity"	INTEGER NOT NULL,
+	"description"	TEXT,
+	"category"	VARCHAR(12),
+	"is_active"	BOOLEAN NOT NULL DEFAULT 'True',
+	PRIMARY KEY("id" AUTOINCREMENT)
+);

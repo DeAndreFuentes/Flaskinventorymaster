@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %} Edit Product {% endblock %}
+
+{% block content %}
+<head>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}">
+</head>
+<div class="background">
+    <div class="container">
+        <h1>Edit Product</h1>
+        <hr>
+
+        <div>
+            <form action="/product/{{one_product[0][0]}}/update" method="post">
+
+                <div class="row">
+                    <div class="form-group col-3">
+                        <label for="name">Name</label>
+                        <input class="form-control" type="text" name="name" required="required" id="" value="{{one_product[0][1]}}">
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="price">Price</label>
+                        <input class="form-control" type="number" step="0.01" min=0 required="required" name="price" id="" value="{{one_product[0][2]}}">
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="quantity">Quantity</label>
+                        <input class="form-control" type="number" min=0 required="required" name="quantity" id="" value="{{one_product[0][3]}}">
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="category">Category</label>
+                        <input class="form-control" type="text" required="required" name="category" id="" value="{{one_product[0][5]}}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" name="description" id="" rows="5">{{one_product[0][4]}}</textarea>
+                </div>
+
+                <button type="submit" class="btn btn-info">Update Product</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+    {{ super() }}
+{% endblock %}
