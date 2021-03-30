@@ -29,7 +29,7 @@ def add_product():
     return redirect("/")
 
 
-# ---- A D D   R E V I E W
+#ADD REVIEW
 @app.route("/review/<product_id>/add", methods=["POST"])
 def add_review(product_id):
     data = request.form
