@@ -8,13 +8,13 @@ from app.app import app
 from app.utils import get_products, get_page_reviews
 
 
-# ---- I N D E X
+# INDEX
 @app.route("/", methods=["GET"])
 def index():
     return render_template("index.html")
 
 
-# ---- A D D   P R O D U C T
+# ADD PRODUCT
 @app.route("/product/add", methods=["POST"])
 def add_product():
     data = request.form
@@ -41,7 +41,7 @@ def add_review(product_id):
     return redirect("/product/{}".format(product_id))
 
 
-# ---- A L L   P R O D U C T S
+#ALL PRODUCTS
 @app.route("/products")
 def all_products():
     page, per_page, offset = get_page_args(page_parameter='page',
@@ -65,7 +65,7 @@ def all_products():
                            page=page, per_page=per_page, search=search)
 
 
-# ---- O N E   P R O D U C T
+# ONEPRODUCT
 @app.route("/product/<product_id>")
 def one_product(product_id):
     page, per_page, offset = get_page_args_for_reviews(page_parameter='page',
@@ -86,14 +86,14 @@ def one_product(product_id):
                            page=page, per_page=per_page)
 
 
-# ---- E D I T   P R O D U C T
+# EDIT PRODUCT
 @app.route("/product/<product_id>/edit")
 def edit_product(product_id):
     one_product = get_one_product(product_id)
     return render_template("edit_product.html", one_product=one_product)
 
 
-# ---- U P D A T E   P R O D U C T
+# UPDATE PRODUCT
 @app.route("/product/<product_id>/update", methods=["POST"])
 def update_product(product_id):
     data = request.form
@@ -101,7 +101,7 @@ def update_product(product_id):
     return redirect("/product/{}".format(product_id))
 
 
-# ---- D E L E T E   P R O D U C T
+# DELETE PRODUCT
 @app.route("/product/<product_id>/remove", methods=["GET"])
 def remove_product(product_id):
     delete_product(product_id)
@@ -111,7 +111,7 @@ def remove_product(product_id):
     return redirect("/products?q={}".format(q))
 
 
-# ---- I N A C T I V E   P R O D U C T S
+# INACTIVE PRODUCTS
 @app.route("/products/inactive")
 def inactive_products():
     page, per_page, offset = get_page_args(page_parameter='page',
@@ -135,7 +135,7 @@ def inactive_products():
                            page=page, per_page=per_page, search=search)
 
 
-# ---- A C T I V A T E  P R O D U C T
+# ACTIVATE PRODUCT
 @app.route("/product/<product_id>/activate")
 def activate_product(product_id):
     set_is_active(product_id)
@@ -145,7 +145,7 @@ def activate_product(product_id):
     return redirect("/products/inactive?q={}".format(q))
 
 
-# ---- P A G E   N O T   F O U N D
+#NOTFOUND
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html"), 404
