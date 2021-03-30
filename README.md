@@ -1,19 +1,7 @@
+run the project
 
-##To run the project
+Flaskinventorymaster/inventory_manager$ python3 run.py
 
-1- create env in project main directory 
+http://192.168.0.112:5000/
 
-`python3 -m venv venv`
 
-2-activate it
-
-`source env/bin/activate`
-
-3. Install requirements
-
-`pip install -r requiremnets.txt`
-
-4.Run the project server
-
-`cd inventory_management/`
-`python run.py`
