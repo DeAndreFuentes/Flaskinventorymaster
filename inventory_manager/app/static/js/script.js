@@ -31,8 +31,7 @@ editProduct = product_id => window.location.href = `/product/${product_id}/edit`
 function init() {
     console.log("Document ready.");
 
-    // E V E N T   L I S T E N E R S
-    // $("#btn-edit").click(editProduct)
+   
 }
 
 window.onload = init;
