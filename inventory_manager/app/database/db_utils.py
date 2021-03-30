@@ -1,7 +1,7 @@
 from inventory_manager.app.database.db_connection import get_db
 
 
-# P R O D U C Ts
+#PRODUCTs
 def create(name, price, quantity, description, category):
     values = (name, price, quantity, description, category, True)
     query = """INSERT INTO product(name, price, quantity, description, category, is_active) VALUES(?, ?, ?, ?, ?, ?)"""
@@ -11,7 +11,7 @@ def create(name, price, quantity, description, category):
     return last_row_id
 
 
-# R E V I E W s
+#REVIEWs
 def create_review(name, review, product_id):
     values = (name, review, product_id)
     query = """INSERT INTO review(name, review, product_id) VALUES(?, ?, ?)"""
@@ -21,7 +21,7 @@ def create_review(name, review, product_id):
     return last_row_id
 
 
-# display P R O D U C T S
+#displayPRODUCTS
 def get_all_products():
     cursor = get_db().execute("SELECT * FROM product WHERE is_active = True ORDER BY id DESC", ())
     results = cursor.fetchall()
@@ -53,7 +53,7 @@ def get_one_product(product_id):
     return results
 
 
-#  reviews
+#reviews
 def get_reviews(product_id):
     cursor = get_db().execute("SELECT * FROM review WHERE product_id = %s" % product_id, ())
     results = cursor.fetchall()
